@@ -1,0 +1,141 @@
+{
+    "geocoded_waypoints": [
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJt2W3KO0vdTERbyuoGyvn79I",
+            "types": [
+                "establishment",
+                "point_of_interest",
+                "school"
+            ]
+        },
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJsT3-pb4vdTERPwAJV8pK6fo",
+            "types": [
+                "establishment",
+                "point_of_interest",
+                "university"
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "bounds": {
+                "northeast": {
+                    "lat": 10.7292194,
+                    "lng": 106.7087257
+                },
+                "southwest": {
+                    "lat": 10.7243508,
+                    "lng": 106.6958469
+                }
+            },
+            "copyrights": "Map data \u00a92020",
+            "legs": [
+                {
+                    "distance": {
+                        "text": "1.9 km",
+                        "value": 1934
+                    },
+                    "duration": {
+                        "text": "6 mins",
+                        "value": 363
+                    },
+                    "end_address": "702 Nguy\u1ec5n V\u0103n Linh, T\u00e2n H\u01b0ng, Qu\u1eadn 7, Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh 700000, Vietnam",
+                    "end_location": {
+                        "lat": 10.7288678,
+                        "lng": 106.6958469
+                    },
+                    "start_address": "78 Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh, T\u00e2n Phong, Qu\u1eadn 7, Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh, Vietnam",
+                    "start_location": {
+                        "lat": 10.7243508,
+                        "lng": 106.7087257
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "0.4 km",
+                                "value": 438
+                            },
+                            "duration": {
+                                "text": "2 mins",
+                                "value": 101
+                            },
+                            "end_location": {
+                                "lat": 10.7282901,
+                                "lng": 106.7086157
+                            },
+                            "html_instructions": "Head <b>north</b> on <b>Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh</b> toward <b>\u0110\u01b0\u1eddng s\u1ed1 10 (T\u00e2y)</b><div style=\"font-size:0.9em\">Pass by C\u00f4ng Ty TNHH M\u1ed9t Th\u00e0nh Vi\u00ean Th\u01b0\u01a1ng M\u1ea1i Qu\u1ed1c T\u1ebf Kim (on the left)</div>",
+                            "polyline": {
+                                "points": "erm`AqphjS[?wDF{DBS?yDFuD@"
+                            },
+                            "start_location": {
+                                "lat": 10.7243508,
+                                "lng": 106.7087257
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "77 m",
+                                "value": 77
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 22
+                            },
+                            "end_location": {
+                                "lat": 10.728986,
+                                "lng": 106.7086013
+                            },
+                            "html_instructions": "Continue straight past Gourmet Restaurant onto <b>B\u00f9i B\u1eb1ng \u0110o\u00e0n</b>/<wbr/><b>Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh</b>",
+                            "maneuver": "straight",
+                            "polyline": {
+                                "points": "yjn`A{ohjSU@Y?{A@"
+                            },
+                            "start_location": {
+                                "lat": 10.7282901,
+                                "lng": 106.7086157
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.4 km",
+                                "value": 1419
+                            },
+                            "duration": {
+                                "text": "4 mins",
+                                "value": 240
+                            },
+                            "end_location": {
+                                "lat": 10.7288678,
+                                "lng": 106.6958469
+                            },
+                            "html_instructions": "Turn <b>left</b> at <b>Nguy\u1ec5n V\u0103n Linh</b><div style=\"font-size:0.9em\">Pass by Ng\u00e2n H\u00e0ng Vietinbank Ph\u1ea1m V\u0103n Ngh\u1ecb (on the right)</div><div style=\"font-size:0.9em\">Destination will be on the right</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "eon`AwohjSW?U@HhJBzC?@FvI?h@@d@@~AAF@R?LBlBHjL@RBx@@j@?d@@dC@rE@hB@pAJvD@p@"
+                            },
+                            "start_location": {
+                                "lat": 10.728986,
+                                "lng": 106.7086013
+                            },
+                            "travel_mode": "DRIVING"
+                        }
+                    ],
+                    "traffic_speed_entry": [],
+                    "via_waypoint": []
+                }
+            ],
+            "overview_polyline": {
+                "points": "erm`AqphjScLJ_LJsB@U@HhJB|CF`KB`DNzPDdB@jDB|HLhG@p@"
+            },
+            "summary": "Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh",
+            "warnings": [],
+            "waypoint_order": []
+        }
+    ],
+    "status": "OK"
+}
