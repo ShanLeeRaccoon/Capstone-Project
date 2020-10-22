@@ -62,19 +62,19 @@ for item in maneuver:
 for item in actionList:
     print(item)
 
-print(type(maneuver))
+
 print_route_data()
-print(distanceCal(10.726724, 106.708470, 10.726529, 106.710106))
+print("Distance calculator test....(180 meters)",distanceCal(10.726724, 106.708470, 10.726529, 106.710106))
 
 #set run to True to start program
 run = True
 
 while run:
     actionCount = len(actionList)
-    print(actionCount)
+    print("number of actions:", actionCount)
 
     for i in range(actionCount):
-        
+
         sleep(3)
         #get GPS data(current_lat, current_lng)
         #distance = distanceCal(current lat, current lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
