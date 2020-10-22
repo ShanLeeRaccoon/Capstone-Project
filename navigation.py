@@ -33,12 +33,11 @@ def print_route_data():
     print(end_lng)
 
 run = False
-distance = 100
+distance = 0
 currentLat = 0
 currentLng = 0
 actionList = []
-action_index = 0
-target_coordinate_index = 0
+
 
 
 with open('Best_route_data.json', 'r') as f:
@@ -72,7 +71,9 @@ run = True
 while run:
     actionCount = len(actionList)
     print("number of actions:", actionCount)
-
+    action_index = 0
+    target_coordinate_index = 0
+    
     for i in range(actionCount):
 
         sleep(3)
