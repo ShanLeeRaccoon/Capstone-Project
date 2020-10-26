@@ -86,16 +86,16 @@ def right():
     sense.clear()
     trig2.off()
 
-run = True
+# run = True
 
-while run:
-    straight()
+# while run:
+#     straight()
     
-    i = input("Please input a turning prompt, press L to turn left, R to turn right and E to exit")
-    if i == "l":
-        left()
-    elif i == "r":
-        right()
-    elif i == "e":
-        sense.clear()
-        run = False
+#     i = input("Please input a turning prompt, press L to turn left, R to turn right and E to exit")
+#     if i == "l":
+#         left()
+#     elif i == "r":
+#         right()
+#     elif i == "e":
+#         sense.clear()
+#         run = False

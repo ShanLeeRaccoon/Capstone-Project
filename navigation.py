@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 from extract import extract_element_from_json
 from distance import distanceCal
 from time import sleep
+from gpsCoordinate import getCoordinate
+from motortest import *
+from sense_hat import SenseHat
+
 # from gpiozero import InputDevice, OutputDevice
 # from time import sleep, time
 # from sense_hat import SenseHat
@@ -12,12 +16,16 @@ from time import sleep
 def maneuverAction(action):
     if action == "turn-left":
         #turn Left action
+        left()
         print("turn left")
     elif action == "turn-right":
         #turn right action
+        right()
         print("turn right")
     elif action == "straight":
         #keep straight action
+        print("straight")
+    else:
         print("straight")
     
 
@@ -76,18 +84,37 @@ while run:
     
     for i in range(actionCount):
         travel = True
+        proceed = True
         while travel:
-            sleep(3)
-            #get GPS data(current_lat, current_lng)
-            #distance = distanceCal(current lat, current lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+            try:
+                while proceed:
+                    sleep(3)
+                    #get GPS data(current_lat, current_lng)
+                    coordinate = getCoordinate()
+                    print(coordinate)
+                    curent_lat = coordinate[0]
+                    current_Lng = coordinate[1]
+
+                    #distance = distanceCal(current lat, current lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
             
-            # straight()
-            
-            if distance < 20:
-                maneuverAction(actionList[action_index])
-                action_index += 1
-                target_coordinate_index += 1
-                travel = False
+                    straight()
+                    
+                    if distance < 20:
+                        print("action")
+                        maneuverAction(actionList[action_index])
+                        action_index += 1
+                        target_coordinate_index += 1
+                        travel = False
+                        proceed = False
+            except Exception:
+                pass
+
+    straight()
+    #distance = distanceCal(current lat, current lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+    if distance < 20:
+        #Show sth on sensehat
+        print("Destination arrived")
+        sense.clear()
     break
     
 
