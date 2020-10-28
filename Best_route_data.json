@@ -40,7 +40,7 @@
                     },
                     "duration": {
                         "text": "6 mins",
-                        "value": 363
+                        "value": 370
                     },
                     "end_address": "702 Nguy\u1ec5n V\u0103n Linh, T\u00e2n H\u01b0ng, Qu\u1eadn 7, Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh 700000, Vietnam",
                     "end_location": {
@@ -107,7 +107,7 @@
                             },
                             "duration": {
                                 "text": "4 mins",
-                                "value": 240
+                                "value": 247
                             },
                             "end_location": {
                                 "lat": 10.7288678,

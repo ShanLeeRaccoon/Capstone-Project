@@ -1,0 +1,212 @@
+{
+    "geocoded_waypoints": [
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJg3tcJGcldTERBe77TQKvnrw",
+            "types": [
+                "establishment",
+                "point_of_interest",
+                "school"
+            ]
+        },
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJt2W3KO0vdTERbyuoGyvn79I",
+            "types": [
+                "establishment",
+                "point_of_interest",
+                "school"
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "bounds": {
+                "northeast": {
+                    "lat": 10.7256667,
+                    "lng": 106.7307324
+                },
+                "southwest": {
+                    "lat": 10.7207359,
+                    "lng": 106.7096579
+                }
+            },
+            "copyrights": "Map data \u00a92020",
+            "legs": [
+                {
+                    "distance": {
+                        "text": "2.9 km",
+                        "value": 2885
+                    },
+                    "duration": {
+                        "text": "6 mins",
+                        "value": 382
+                    },
+                    "end_address": "78 Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh, T\u00e2n Phong, Qu\u1eadn 7, Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh, Vietnam",
+                    "end_location": {
+                        "lat": 10.7229713,
+                        "lng": 106.7096579
+                    },
+                    "start_address": "L\u00f4 S3 T\u00e2n Ph\u00fa, Qu\u1eadn 7, Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh, Vietnam",
+                    "start_location": {
+                        "lat": 10.7236461,
+                        "lng": 106.7307324
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 145
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 18
+                            },
+                            "end_location": {
+                                "lat": 10.7247539,
+                                "lng": 106.7300343
+                            },
+                            "html_instructions": "Head <b>northwest</b> on <b>T\u00e2n Ph\u00fa</b> toward <b>\u0110\u01b0\u1eddng S\u1ed1 17</b><div style=\"font-size:0.9em\">Pass by HCM City Taiwan School (on the right)</div>",
+                            "polyline": {
+                                "points": "ymm`AazljSC@_@Rg@XeAj@iAn@"
+                            },
+                            "start_location": {
+                                "lat": 10.7236461,
+                                "lng": 106.7307324
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.5 km",
+                                "value": 534
+                            },
+                            "duration": {
+                                "text": "2 mins",
+                                "value": 110
+                            },
+                            "end_location": {
+                                "lat": 10.72225,
+                                "lng": 106.7258682
+                            },
+                            "html_instructions": "Turn <b>left</b> at Du An Midtown The Peak Phu My Hung onto <b>\u0110\u01b0\u1eddng s\u1ed1 16</b><div style=\"font-size:0.9em\">Pass by C\u00f4ng Ty Tnhh H\u00e2n L\u00ea (on the left)</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "utm`AuuljSdBdDXj@d@z@P^R^f@bAFJf@dArAjCx@~Ax@bBFJ"
+                            },
+                            "start_location": {
+                                "lat": 10.7247539,
+                                "lng": 106.7300343
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.4 km",
+                                "value": 355
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 38
+                            },
+                            "end_location": {
+                                "lat": 10.7249713,
+                                "lng": 106.7241733
+                            },
+                            "html_instructions": "Turn <b>right</b> onto <b>C\u1ea7u C\u1ea3 C\u1ea5m 2</b>/<wbr/><b>Nguy\u1ec5n L\u01b0\u01a1ng B\u1eb1ng</b><div style=\"font-size:0.9em\">Pass by the bridge (on the left)</div>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "aem`Au{kjS{Ax@yBjA{Ax@EBWN_@Rk@Zw@`@g@Vc@T"
+                            },
+                            "start_location": {
+                                "lat": 10.72225,
+                                "lng": 106.7258682
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "90 m",
+                                "value": 90
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 14
+                            },
+                            "end_location": {
+                                "lat": 10.7256667,
+                                "lng": 106.723746
+                            },
+                            "html_instructions": "Keep <b>left</b> to continue on <b>Nguy\u1ec5n L\u01b0\u01a1ng B\u1eb1ng</b><div style=\"font-size:0.9em\">Pass by \u30a4\u30aa\u30f3\u30e2\u30fc\u30eb \u30d3\u30f3\u30bf\u30f3 \u30b7\u30e3\u30c8\u30eb\u30d0\u30b9\u51fa\u767a (on the right)</div>",
+                            "maneuver": "keep-left",
+                            "polyline": {
+                                "points": "avm`AaqkjSkCrA"
+                            },
+                            "start_location": {
+                                "lat": 10.7249713,
+                                "lng": 106.7241733
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.5 km",
+                                "value": 1456
+                            },
+                            "duration": {
+                                "text": "3 mins",
+                                "value": 162
+                            },
+                            "end_location": {
+                                "lat": 10.7215345,
+                                "lng": 106.7119183
+                            },
+                            "html_instructions": "Turn <b>left</b> at VIETNAMHOUSE.VN onto <b>Tr\u1ea7n V\u0103n Tr\u00e0</b><div style=\"font-size:0.9em\">Pass by C\u00f4ng Ty Tnhh D\u1ecbch V\u1ee5 K\u1ef9 Thu\u1eadt Sol (on the left)</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "mzm`AmnkjSFNDH~BnErAjCf@~@zAzC^r@~A~Cd@~@|AzCNV|BjEzBjEr@xAL\\J\\H`@H`@Br@?b@Gp@Kp@Q|@EVaBbJOz@"
+                            },
+                            "start_location": {
+                                "lat": 10.7256667,
+                                "lng": 106.723746
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.3 km",
+                                "value": 305
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 40
+                            },
+                            "end_location": {
+                                "lat": 10.7229713,
+                                "lng": 106.7096579
+                            },
+                            "html_instructions": "At Qu\u00e1n M\u00ec - Ph\u1edf Nooove, continue onto <b>Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh</b><div style=\"font-size:0.9em\">Pass by Nguyen Collection of Asian Antique (on the right)</div><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+                            "polyline": {
+                                "points": "q`m`AodijSEp@AVCXCTEVITKTKRoEvEWX"
+                            },
+                            "start_location": {
+                                "lat": 10.7215345,
+                                "lng": 106.7119183
+                            },
+                            "travel_mode": "DRIVING"
+                        }
+                    ],
+                    "traffic_speed_entry": [],
+                    "via_waypoint": []
+                }
+            ],
+            "overview_polyline": {
+                "points": "ymm`AazljSqCzAiAn@dBdD~@fBtAnCnFtKFJ{Ax@uEdCiBbAoGbD`FtJbGnLbCzElCbFnDdHXz@RbABvASbBWtAqB~KGhAGn@Ol@Wh@gFpF"
+            },
+            "summary": "Tr\u1ea7n V\u0103n Tr\u00e0",
+            "warnings": [],
+            "waypoint_order": []
+        }
+    ],
+    "status": "OK"
+}

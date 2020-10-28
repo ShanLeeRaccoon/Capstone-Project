@@ -9,10 +9,6 @@ from gpsCoordinate import getCoordinate
 from motortest import *
 from sense_hat import SenseHat
 
-# from gpiozero import InputDevice, OutputDevice
-# from time import sleep, time
-# from sense_hat import SenseHat
-# from time import sleep
 def maneuverAction(action):
     if action == "turn-left":
         #turn Left action
@@ -24,6 +20,7 @@ def maneuverAction(action):
         print("turn right")
     elif action == "straight":
         #keep straight action
+        straight()
         print("straight")
     else:
         print("straight")
@@ -47,8 +44,8 @@ currentLng = 0
 actionList = []
 travel = False
 
-
-with open('Best_route_data.json', 'r') as f:
+#open the route data
+with open('Best_route_data2.json', 'r') as f:
     distros_dict = json.load(f)
 
 start_point = extract_element_from_json(distros_dict, ["routes", "legs","start_address"])
@@ -61,11 +58,13 @@ end_lat = extract_element_from_json(distros_dict, ["routes", "legs","steps","end
 end_lng = extract_element_from_json(distros_dict, ["routes", "legs","steps","end_location","lng"])
 start_instruction = BeautifulSoup(start_instruction[0], "lxml").text
 
+#delete starting point maneuver(None)
+del maneuver[0]
+for item in maneuver: 
+    # if item != None
+    actionList.append(item)
 
-for item in maneuver:
-    if item != None:
-        actionList.append(item)
-
+#put action into action list
 for item in actionList:
     print(item)
 
@@ -78,29 +77,31 @@ run = True
 
 while run:
     actionCount = len(actionList)
-    print("number of actions:", actionCount)
+    print("Number of actions:", actionCount)
     action_index = 0
     target_coordinate_index = 0
     
     for i in range(actionCount):
         travel = True
         proceed = True
+        distance = 100
         while travel:
             try:
                 while proceed:
+                    straight()
                     sleep(3)
                     #get GPS data(current_lat, current_lng)
                     coordinate = getCoordinate()
-                    print(coordinate)
-                    curent_lat = coordinate[0]
-                    current_Lng = coordinate[1]
+                    print("Current coordinate: ", coordinate)
+                    current_lat = coordinate[0]
+                    current_lng = coordinate[1]
 
-                    #distance = distanceCal(current lat, current lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
-            
-                    straight()
+                    distance = distanceCal(current_lat, current_lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+                    print("Distance: ", distance, " meter")
+                    # straight()
                     
-                    if distance < 20:
-                        print("action")
+                    if distance < 50:
+                        print("Action Proceed")
                         maneuverAction(actionList[action_index])
                         action_index += 1
                         target_coordinate_index += 1
@@ -108,13 +109,49 @@ while run:
                         proceed = False
             except Exception:
                 pass
+    #final step
+    print("Final step")
+    travel = True
+    proceed = True
+    distance = 100
 
-    straight()
-    #distance = distanceCal(current lat, current lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
-    if distance < 20:
-        #Show sth on sensehat
-        print("Destination arrived")
-        sense.clear()
+    while travel:
+        try:
+            while proceed:
+                straight()
+                sleep(2)
+                coordinate = getCoordinate()
+                print("Current coordinate: ", coordinate)
+                current_lat = coordinate[0]
+                current_lng = coordinate[1]
+                
+
+                distance = distanceCal(current_lat, current_lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+                if distance < 30:
+                    #Show sth on sensehat
+                    print("Destination arrived")
+                    sense.clear()
+                    travel = False
+                    proceed = False
+        except Exception:
+            pass
+    
+    # while True:
+    #     distance = 100
+    #     straight()
+    #     sleep(2)
+    #     coordinate = getCoordinate()
+    #     print("Current coordinate: ", coordinate)
+    #     current_lat = coordinate[0]
+    #     current_lng = coordinate[1]
+        
+
+    #     distance = distanceCal(current_lat, current_lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+    #     if distance < 30:
+    #         #Show sth on sensehat
+    #         print("Destination arrived")
+    #         sense.clear()
+    #         break
     break
     
 

@@ -10,5 +10,5 @@ request = endpoint + nav_request
 response = urllib.request.urlopen(request).read()
 directions = json.loads(response)
 print(directions)
-with open('Best_route_data.json', 'w') as json_file:
+with open('Best_route_data3.json', 'w') as json_file:
     json.dump(directions, json_file, indent = 4, sort_keys = True)
