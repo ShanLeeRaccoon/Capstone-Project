@@ -27,7 +27,7 @@ class Home extends Component {
 			<br/>
 			<br/>
 			<br/>
-			<Button type="primary" onClick={this.confirmLocation} class="btn btn-primary">Confirm location</Button>
+			<Button type="primary" block onClick={this.confirmLocation} class="btn btn-primary">Confirm location</Button>
 			</div>
 			</div>
 			

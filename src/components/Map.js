@@ -215,9 +215,11 @@ const AsyncMap = withScriptjs(
       {/* For Auto complete Search Box */}
       <Autocomplete
        style={{
-        width: '100%',
+        width: '99%',
         height: '40px',
         marginTop: '2px',
+        marginLeft:'2px',
+        marginRight:'2px',
         marginBottom: '100px'
        }}
 	   onPlaceSelected={ this.onPlaceSelected }

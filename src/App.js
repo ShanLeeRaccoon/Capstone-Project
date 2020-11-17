@@ -14,7 +14,7 @@ class App extends Component {
 					<Navbar.Brand href="#home">
 						<img
 							alt=""
-							src="/logo.svg"
+							src="https://seeklogo.net/wp-content/files/nAMr39DXwW/bmw-new-2020-SJklslL.svg"
 							width="30"
 							height="30"
 							className="d-inline-block align-top"/>{' '}
