@@ -6,7 +6,48 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			startLocation: " ",
+			endLocation: "Please Select a location. ",
+			testValue: " ",
+			lat: " ",
+			lng: " ",
+		};
+		this.testDropping = this.testDropping.bind(this)
+		this.setStartLocation = this.setStartLocation.bind(this)
+		this.onAddressChange = this.onAddressChange.bind(this)
+	}
+
+	testDropping(e) {
+		this.setState({
+			testValue: e
+		})
+		console.log('test dropping', this.state.testValue)
+	}
+
+	setStartLocation(e){
+		this.setState({
+			startLocation: e
+		})
+		console.log("start address: ", this.state.startLocation)
+	}
+
+	onAddressChange(e) {
+		this.setState({
+			endLocation: e
+		})
+		console.log("end address: ", this.state.endLocation)
+	}
+
 	render() {
+		const childProps = {
+			app: this.state,
+			testDropping: this.testDropping,
+			onAddressChange: this.onAddressChange,
+			setStartLocation: this.setStartLocation,
+			}
 		return (
 
 			<div className="App">
@@ -20,12 +61,12 @@ class App extends Component {
 							className="d-inline-block align-top"/>{' '}
       						
     				</Navbar.Brand>
-					<Navbar.Brand href="#home">SafeCycle App</Navbar.Brand>
+					<Navbar.Brand href="/">SafeCycle App</Navbar.Brand>
 				</Navbar>
-				<Router>
+				<Router >
 					<div>
-
-						<Route exact path="/" component={Home} />
+						
+						<Home {...childProps} />
 					</div>
 				</Router>
 			</div>
