@@ -69,7 +69,7 @@ class App extends Component {
 				<Router >
 					<div>
 
-						<Home {...childProps} history={this.props.history} />
+						<Home {...childProps} />
 					</div>
 				</Router>
 			</div>

@@ -15,7 +15,7 @@ class MapDirectionsRenderer extends React.Component {
 
   componentDidMount() {
     const { places, travelMode } = this.props;
-    
+    console.log("print", this.props)
     const waypoints = places.map(p =>({
         location: {lat: p.latitude, lng:p.longitude},
         stopover: true
@@ -59,10 +59,7 @@ const Map = withScriptjs(
       defaultCenter={props.defaultCenter}
       defaultZoom={props.defaultZoom}
     >
-      {props.markers.map((marker, index) => {
-        const position = { lat: marker.latitude, lng: marker.longitude };
-        return <Marker key={index} position={position} />;
-      })}
+     
       <MapDirectionsRenderer
         places={props.markers}
         travelMode={window.google.maps.TravelMode.DRIVING}

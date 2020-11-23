@@ -12,13 +12,13 @@ import Home from "./components/Home";
 // import routedMap from "./components/routedMap"
 
 ReactDOM.render((
-  <Router>
+  <Router >
     <div>
       <Route exact path="/">
         <App />
       </Route>
-      <Route path="/DisplayRoute">
-        <DisplayRoute />
+      <Route path="/DisplayRoute" component={DisplayRoute}>
+        <DisplayRoute  />
       </Route>
     </div>
   </Router>

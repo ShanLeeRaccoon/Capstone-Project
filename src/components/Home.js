@@ -3,7 +3,6 @@ import Map from './Map';
 import { Button } from 'antd';
 import Table from 'react-bootstrap/Table'
 import Swal from 'sweetalert2'
-import { Redirect } from "react-router-dom";
 
 class Home extends Component {
 	constructor(props) {
@@ -30,29 +29,32 @@ class Home extends Component {
 	}
 	//Button Click Function
 	opensweetalert() {
+		
 		Swal.fire({
 			title: 'Location Confirmed!',
 			text: "Directing to routing screen...",
 			type: 'success',
 		})
-		setTimeout(() => { window.location.replace("http://localhost:3000/DisplayRoute"); }, 3000);
+		setTimeout(() => { window.location = "DisplayRoute"; }, 3000);
+		
 		
 	}
 	
 
 	render() {
-		
+		localStorage.setItem("startLocation", this.props.app.startLocation)
+		localStorage.setItem("endLocation", this.props.app.endLocation)
 		// console.log("here:", this.props.app.startLocation)
 		return (
 			<div>
 				<div style={{ margin: '0px' }}>
-					{/* <Map
+					<Map
 						{...this.props}
 						// google={this.props.google}
 						// default center - fetch raspberry pi location 10.726560, 106.708471
 						center={{ lat: 10.726560, lng: 106.708471 }}
 						zoom={15}
-					/> */}
+					/>
 					<Table striped bordered hover variant="dark">
 						<tbody>
 							<tr>
