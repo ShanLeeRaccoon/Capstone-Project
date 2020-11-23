@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Map from './Map';
-import './style.css';
+import Map from './MapDraw';
 
-const googleMapsApiKey = "AIzaSyDurZQBXjtSzKeieXwtFeGe-jhZu-HEGQU";
+const googleMapsApiKey = "AIzaSyATP8bWLQMM4D4R2ILoKFGjZL69qcKoyJs";
 
 const App = props => {
   const {places} = props;
@@ -35,11 +34,10 @@ const App = props => {
 
 
 const places = [
-  {latitude: 25.8103146,longitude: -80.1751609},
-  {latitude: 27.9947147,longitude: -82.5943645},
-  {latitude: 28.4813018,longitude: -81.4387899}
+  {latitude: 10.726675,longitude: 106.708340},
+  {latitude: 10.728979, longitude: 106.695755}
 ]
 
 render(<App defaultZoom={7} places={places} />, document.getElementById('root'));
 
-// https://stackoverflow.com/questions/55424790/how-i-draw-a-route-with-react-google-maps-component
+export default App;

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 import Home from "./components/Home";
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -20,6 +20,9 @@ class App extends Component {
 		this.onAddressChange = this.onAddressChange.bind(this)
 	}
 
+
+
+
 	testDropping(e) {
 		this.setState({
 			testValue: e
@@ -27,7 +30,7 @@ class App extends Component {
 		console.log('test dropping', this.state.testValue)
 	}
 
-	setStartLocation(e){
+	setStartLocation(e) {
 		this.setState({
 			startLocation: e
 		})
@@ -46,8 +49,8 @@ class App extends Component {
 			app: this.state,
 			testDropping: this.testDropping,
 			onAddressChange: this.onAddressChange,
-			setStartLocation: this.setStartLocation,
-			}
+			setStartLocation: this.setStartLocation
+		}
 		return (
 
 			<div className="App">
@@ -58,15 +61,15 @@ class App extends Component {
 							src="https://seeklogo.net/wp-content/files/nAMr39DXwW/bmw-new-2020-SJklslL.svg"
 							width="30"
 							height="30"
-							className="d-inline-block align-top"/>{' '}
-      						
-    				</Navbar.Brand>
+							className="d-inline-block align-top" />{' '}
+
+					</Navbar.Brand>
 					<Navbar.Brand href="/">SafeCycle App</Navbar.Brand>
 				</Navbar>
 				<Router >
 					<div>
-						
-						<Home {...childProps} />
+
+						<Home {...childProps} history={this.props.history} />
 					</div>
 				</Router>
 			</div>
