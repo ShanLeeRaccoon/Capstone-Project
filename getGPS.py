@@ -1,18 +1,54 @@
-# from gpsCoordinate import getCoordinate
-
+from gpsCoordinate import getCoordinate
+from time import sleep
 import json
+status = {"status": "Stop"}
+standby = True
 
-coordinate = {
-    "currentLat": 10.788910,
-    "currentLng": 106.652562
-}
-# coordinate = getCoordinate()
+def saveCoordinate():
+    run = True
+    while run:
 
-print("Current coordinate: ", coordinate)
-current_lat = coordinate["currentLat"]
-current_lng = coordinate["currentLng"]
+        try:
+            GPScoordinate = getCoordinate()
+            #fake coordinate
+            coordinate = {
+                "currentLat": GPScoordinate[0],
+                "currentLng": GPScoordinate[1]
+            }
+            
+            # GPScoordinate = getCoordinate()
+            
+            print("Current coordinate: ", GPScoordinate)
+            
 
-with open('GPS.json', 'w') as outfile:
-    json.dump(coordinate, outfile)
+           
+
+            with open('/home/pi/Desktop/Capstone/originGPS.json', 'w') as outfile:
+                json.dump(coordinate, outfile)
+            run = False
+        except Exception:
+            pass
+
+
+saveCoordinate()
+
+while standby:
+    sleep(1)
+    with open('/home/pi/Desktop/Capstone/backend/getGPScommand.json') as f:
+        data = json.load(f)
+        statusValue = data['status']
+        print(statusValue)
+
+
+    if statusValue == "Fetch":
+        saveCoordinate()
+        with open('/home/pi/Desktop/Capstone/backend/getGPScommand.json', 'w') as c:
+            json.dump(status, c)
+        print("changed to stop")
+        
+
+    
+
+
 
 

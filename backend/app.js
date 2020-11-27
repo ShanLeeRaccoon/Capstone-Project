@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 app.use(cors());
 //data sample
+let get_GPS_status = {"status": "Fetch"}
+let cal_route_status = {"status":"Cal"}
+let run_nav_status = {"status": "Stop"}
 var user = {
     "user4": {
         "name": "mohit",
@@ -37,19 +40,39 @@ app.post('/saveData', function (req, res) {
     reqData = req.body;
     console.log(reqData);
     let data = JSON.stringify(reqData, null, 2);
-    fs.writeFile('GPSrequest.json', data, (err) => {
+    fs.writeFile('/home/pi/Desktop/Capstone/backend/destinationGPS.json', data, (err) => {
         if (err) throw err;
         console.log('Data written to file');
         res.end(data);
 
     });
+    let cal_route_command = JSON.stringify(cal_route_status);
+    fs.writeFile('/home/pi/Desktop/Capstone/backend/cal_route_command.json', cal_route_command, (err) => {
+        if (err) throw err;
+        console.log('Data written to cal_route_command file:Cal');
+    });
+
+
 })
 
 
 app.get('/getGPS', (req, res) => {
-    let rawdata = fs.readFileSync('/home/pi/Desktop/Capstone/GPS.json');
+    let rawdata = fs.readFileSync('/home/pi/Desktop/Capstone/originGPS.json');
     let coordinate = JSON.parse(rawdata);
     
+    //change status
+    let get_GPS_command = JSON.stringify(get_GPS_status);
+    fs.writeFile('/home/pi/Desktop/Capstone/backend/getGPScommand.json', get_GPS_command, (err) => {
+        if (err) throw err;
+        console.log('Data written to get GPS command file:fetch');
+    });
+
+    let run_nav_command = JSON.stringify(run_nav_status);
+    fs.writeFile('/home/pi/Desktop/Capstone/backend/run_nav_command.json', run_nav_command, (err) => {
+        if (err) throw err;
+        console.log('Data written to run nav command file:STOP');
+    });
+
     return res.send(coordinate);
   });
 
