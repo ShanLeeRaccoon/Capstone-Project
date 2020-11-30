@@ -42,11 +42,11 @@ def print_route_data():
 run_program = True
 cal = False
 run = False
-proceed_final_step = True
 distance = 0
 currentLat = 0
 currentLng = 0
 actionList = []
+run_nav_status = {"status": "Stop"}
 # travel = False
 
 while run_program:
@@ -105,7 +105,8 @@ while run_program:
             while travel:
                 try:
                     while proceed:
-                      
+                        proceed_final_step = True
+                        
                         #read run_nav_command
                         with open('/home/pi/Desktop/Capstone/backend/run_nav_command.json') as c:
                             data = json.load(c)
@@ -159,17 +160,22 @@ while run_program:
                     sleep(2)
                     coordinate = getCoordinate()
                     print("Current coordinate: ", coordinate)
+
                     current_lat = coordinate[0]
                     current_lng = coordinate[1]
                     
 
                     distance = distanceCal(current_lat, current_lng, end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+                    print("Distance to destination: ", distance, " meter")
+
                     if distance < 30:
                         #Show sth on sensehat
                         print("Destination arrived")
+                        with open('/home/pi/Desktop/Capstone/backend/run_nav_command.json', 'w') as r:
+                            json.dump(run_nav_status, r)
                         sense.clear()
-                        travel = False
-                        proceed = False
+                        travel_end = False
+                        proceed_end = False
             except Exception:
                 pass
         
