@@ -8,6 +8,7 @@ from time import sleep
 from gpsCoordinate import getCoordinate
 from motortest import *
 from sense_hat import SenseHat
+from bearing import calculate_initial_compass_bearing
 
 
 
@@ -47,6 +48,10 @@ currentLat = 0
 currentLng = 0
 actionList = []
 run_nav_status = {"status": "Stop"}
+bearing_value = {"value": 0}
+compass_command_run = {"status": "Run"}
+compass_command_stop = {"status": "Stop"}
+
 # travel = False
 
 while run_program:
@@ -96,6 +101,64 @@ while run_program:
         print("Number of actions:", actionCount)
         action_index = 0
         target_coordinate_index = 0
+        
+        ##first step here
+        run_first_step = True
+        proceed_first_step = True
+        while run_first_step:
+            try:
+                while proceed_first_step:
+                    sleep(3)
+                    with open('/home/pi/Desktop/Capstone/backend/run_nav_command.json') as j:
+                            data = json.load(j)
+                            statusValue = data['status']
+                            print("Run Navigation: ", statusValue)
+                            if statusValue == "Stop":
+                                with open('/home/pi/Desktop/Capstone/run_compass.json', 'w') as s:
+                                    json.dump(compass_command_stop, s)
+                                run_first_step = False
+                                proceed_first_step = False
+                                cal = False
+                                run = False
+                                proceed_final_step = False
+                                break
+                    coordinate = getCoordinate()
+                    print("Current coordinate: ", coordinate)
+                    
+                    pointA = (float(coordinate[0]), float(coordinate[1]))
+                    # pointA = (10.728983, 106.717241)
+                    # print(type(pointA))
+                    # print(pointA)
+                    pointB = (end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+                    bearing = calculate_initial_compass_bearing(pointA, pointB) 
+                    print("bearing: ", bearing)
+                    bearing_value['value'] = bearing
+                    with open('/home/pi/Desktop/Capstone/bearing.json', 'w') as b:
+                        json.dump(bearing_value, b)
+
+                    with open('/home/pi/Desktop/Capstone/run_compass.json', 'w') as a:
+                        json.dump(compass_command_run, a)
+
+                    distance = distanceCal(coordinate[0], coordinate[1], end_lat[target_coordinate_index], end_lng[target_coordinate_index])
+                    print("next turn coordinate: ", end_lat[target_coordinate_index],", ", end_lng[target_coordinate_index])
+                    print("Distance to next turn: ", distance, " meter")
+
+                    if distance < 20:
+                        
+                        print("Action Proceed")
+                        with open('/home/pi/Desktop/Capstone/run_compass.json', 'w') as s:
+                            json.dump(compass_command_stop, s)
+                        maneuverAction(actionList[action_index])
+                        action_index += 1
+                        target_coordinate_index += 1
+                        proceed_first_step = False
+                        run_first_step = False
+
+            except Exception:
+                    pass
+
+        actionCount = actionCount - 1            
+
         
         for i in range(actionCount):
             travel = True
