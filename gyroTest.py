@@ -109,11 +109,11 @@ def run_compass(bearing):
         # sleep(1)
         north = sense.get_compass()
         #Calibration
-        north = north - 100
+        north = north - 95
         if north < 0:
             north = north + 360
         north = round(north, 1)
-
+        print("bearing: ", local_bearing)
         target = north - local_bearing
         if target < 0:
             target = target + 360 
@@ -144,39 +144,37 @@ def run_compass(bearing):
         elif (target >= 292.5) and (target < 337.5):
             sense.set_pixels(arrow_ne)
 
-        with open('/home/pi/Desktop/Capstone/run_compass.json', 'r') as s:
-            json_data = json.load(s)
-        data = json_data['status']
-        if data == "Stop":
-            break
+        # with open('/home/pi/Desktop/Capstone/run_compass.json', 'r') as s:
+        #     json_data = json.load(s)
+        # data = json_data['status']
+        # if data == "Stop":
+        #     break
 
-        with open('/home/pi/Desktop/Capstone/bearing.json', 'r') as br:
-            json_data = json.load(br)
-        new_bearing = json_data['value']
-        if new_bearing != local_bearing:
-            local_bearing = new_bearing
-
-
-while True:
-    sleep(1)
-    status = False
-    with open('/home/pi/Desktop/Capstone/run_compass.json', 'r') as s:
-        json_data = json.load(s)
-    data = json_data['status']
-    print(data)
-    if data == "Run":
-        status = True
-    try:    
-        while status:
-            with open('/home/pi/Desktop/Capstone/bearing.json', 'r') as b:
-                json_data = json.load(b)
-                bearing = json_data['value']
-            run_compass(bearing)
-            break
-    except Exception:
-            pass
+        # with open('/home/pi/Desktop/Capstone/bearing.json', 'r') as br:
+        #     json_data = json.load(br)
+        # new_bearing = json_data['value']
+        # if new_bearing != local_bearing:
+        #     local_bearing = new_bearing
 
 
+# while False:
+#     sleep(1)
+#     status = False
+#     with open('/home/pi/Desktop/Capstone/run_compass.json', 'r') as s:
+#         json_data = json.load(s)
+#     data = json_data['status']
+#     print(data)
+#     if data == "Run":
+#         status = True
+#     try:    
+#         while status:
+#             with open('/home/pi/Desktop/Capstone/bearing.json', 'r') as b:
+#                 json_data = json.load(b)
+#                 bearing = json_data['value']
+#             run_compass(bearing)
+#             break
+#     except Exception:
+#             pass
 
 
 
@@ -185,7 +183,9 @@ while True:
 
 
 
-run_compass(111)
+
+
+run_compass(180)
 
 
 
