@@ -171,6 +171,8 @@ class Map extends React.Component {
       },
     })
     this.props.onAddressChange(this.state.address)
+    localStorage.setItem("targetLat", latValue)
+    localStorage.setItem("targetLng", lngValue)
   };
   /**
     * When the marker is dragged you get the lat and long using the functions available from event object.
@@ -215,7 +217,8 @@ class Map extends React.Component {
       }
     );
     this.props.onAddressChange(this.state.address)
-
+    localStorage.setItem("targetLat", newLat)
+    localStorage.setItem("targetLng", newLng)
 
 
   };

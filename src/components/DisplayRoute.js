@@ -10,10 +10,7 @@ const googleMapsApiKey = "AIzaSyATP8bWLQMM4D4R2ILoKFGjZL69qcKoyJs";
 
 const App = props => {
   // const {places} = props;
-  const places = [
-    {latitude: 10.726675,longitude: 106.708340},
-    {latitude: 10.728979, longitude: 106.695755}
-  ]
+  
   const {
     loadingElement,
     containerElement,
@@ -25,6 +22,7 @@ const App = props => {
   
 
   return (
+    
     <div>
     <Map
     {...props}
@@ -38,8 +36,8 @@ const App = props => {
       loadingElement={loadingElement || <div style={{height: `100%`}}/>}
       containerElement={containerElement || <div style={{height: "80vh"}}/>}
       mapElement={mapElement || <div style={{height: `100%`}}/>}
-      defaultCenter={defaultCenter || {lat: 25.798939, lng: -80.291409}}
-      defaultZoom={defaultZoom || 11}
+      defaultCenter={defaultCenter || {lat: 10.726675, lng:  106.708340}}
+      defaultZoom={defaultZoom || 15}
     />
     <Table   style={{marginTop: '5px'}} striped bordered hover variant="dark">
 						<tbody>
@@ -56,16 +54,21 @@ const App = props => {
 					</Table>
           <p className="text-center">The SafeCycle device will now lead your way! Click return to assign new destination.</p>
     <Button style={{ marginBottom: '10px' }} block onClick={(e) => {
-      e.preventDefault(); window.location.href='/'}} class="btn btn-primary">Return to Location Selection. </Button>
+      e.preventDefault(); window.location.href='/'; localStorage.clear()}} class="btn btn-primary">Return to Location Selection. </Button>
     </div>
   );
   
 };
 
 
+let targetLat = parseFloat(localStorage.getItem("targetLat"))
+let targetLng = parseFloat(localStorage.getItem("targetLng"))
+let currentLat = parseFloat(localStorage.getItem("currentLat"))
+let currentLng = parseFloat(localStorage.getItem("currentLng"))
+console.log("Print lat and long here: ", targetLat, targetLng)
 const places = [
-  {latitude: 10.726675,longitude: 106.708340},
-  {latitude: 10.728979, longitude: 106.695755}
+  {latitude: currentLat,longitude: currentLng},
+  {latitude: targetLat, longitude: targetLng}
 ]
 
 render(<App defaultZoom={7} places={places} />, document.getElementById('root'));

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Map from './Map';
 import { Button } from 'antd';
-import Table from 'react-bootstrap/Table'
-import Swal from 'sweetalert2'
+import Table from 'react-bootstrap/Table';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 class Home extends Component {
 	constructor(props) {
@@ -10,26 +11,61 @@ class Home extends Component {
 		this.state = {
 			start: " ",
 			end: " ",
-			redirect: false
+			redirect: false,
+			lat:1,
+			lng:1,
+			isLoading: false
 		}
-		this.setState({
-			start: this.props.app.startLocation,
-			end: this.props.app.endLocation
-		})
 	
 
 	}
 
-	  
+	componentDidMount() {
+		// fetch('http://192.168.0.11:8080/getGPS')
+		// 	.then(response => response.json())
+		// 	.then(data => this.setState({ lat: data.currentLat, lng: data.currentLng }));
+		axios.get('http://192.168.0.11:8080/getGPS').then(resp => {
+
+		this.setState({
+			lat: resp.data.currentLat,
+			lng: resp.data.currentLng
+			
+		});
+		console.log(this.state.lat, this.state.lng);
+		localStorage.setItem("currentLat", this.state.lat)
+		localStorage.setItem("currentLng", this.state.lng)
+		this.setState({
+			isLoading: true
+			
+		});
+		console.log("component")
+	});
+		
+	}
 
 	confirmLocation = (event) => {
 		console.log('send location', this.state.testValue)
 		// console.log()
 		this.props.testDropping(this.state.testValue)
 	}
+
+	
 	//Button Click Function
 	opensweetalert() {
-		
+		let targetLocation = {
+			// address: localStorage.getItem("endLocation")
+			address: localStorage.getItem("targetLat") + ", " + localStorage.getItem("targetLng")
+		}
+		console.log("print", targetLocation)
+
+		axios.post('http://192.168.0.11:8080/saveData', targetLocation)
+
+		.then((response) => {
+			console.log(response);
+		  }, (error) => {
+			console.log(error);
+		  });
+
 		Swal.fire({
 			title: 'Location Confirmed!',
 			text: "Directing to routing screen...",
@@ -42,17 +78,26 @@ class Home extends Component {
 	
 
 	render() {
+		if(this.state.isLoading!=true){
+			return <div>Loading....</div>
+
+		}else{
+		
 		localStorage.setItem("startLocation", this.props.app.startLocation)
 		localStorage.setItem("endLocation", this.props.app.endLocation)
 		// console.log("here:", this.props.app.startLocation)
+		localStorage.setItem("currentLat", this.state.lat)
+		localStorage.setItem("currentLng", this.state.lng)
+		console.log("HI", this.state.lat)
 		return (
+			
 			<div>
 				<div style={{ margin: '0px' }}>
 					<Map
 						{...this.props}
 						// google={this.props.google}
 						// default center - fetch raspberry pi location 10.726560, 106.708471
-						center={{ lat: 10.726560, lng: 106.708471 }}
+						center={{ lat: parseFloat(this.state.lat), lng: parseFloat(this.state.lng) }}
 						zoom={15}
 					/>
 					<Table striped bordered hover variant="dark">
@@ -77,6 +122,7 @@ class Home extends Component {
 
 
 		);
+		}
 	}
 }
 

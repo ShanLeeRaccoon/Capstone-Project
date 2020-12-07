@@ -14,6 +14,7 @@ class App extends Component {
 			testValue: " ",
 			lat: " ",
 			lng: " ",
+			newEndLocation: " ",
 		};
 		this.testDropping = this.testDropping.bind(this)
 		this.setStartLocation = this.setStartLocation.bind(this)
@@ -39,7 +40,8 @@ class App extends Component {
 
 	onAddressChange(e) {
 		this.setState({
-			endLocation: e
+			endLocation: e,
+			newEndLocation: this.state.endLocation
 		})
 		console.log("end address: ", this.state.endLocation)
 	}
