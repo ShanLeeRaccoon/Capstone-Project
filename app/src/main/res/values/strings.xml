@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Android Application</string>
+    <string name="start_scanning_bluetooth">Start scanning nearby devices</string>
+    <string name="stop_scanning_bluetooth">Stop scanning nearby devices</string>
+</resources>
