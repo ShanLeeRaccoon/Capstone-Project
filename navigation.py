@@ -9,15 +9,16 @@ from gpsCoordinate import getCoordinate
 from motortest import *
 from sense_hat import SenseHat
 from bearing import calculate_initial_compass_bearing
+import re
 
 
 
-def maneuverAction(action):
-    if action == "turn-left":
+def maneuverAction(action, command):
+    if action == "turn-left" or action == "turn-sharp-left" or action == "ramp-left" or action == "fork-left":
         #turn Left action
         left()
         print("turn left")
-    elif action == "turn-right":
+    elif action == "turn-right" or action == "turn-sharp-right" or action == "ramp-right" or action == "fork-right":
         #turn right action
         right()
         print("turn right")
@@ -25,13 +26,22 @@ def maneuverAction(action):
         #keep straight action
         straight()
         print("straight")
+    elif action == "roundabout-right" or action == "roundabout-left":
+        # Roundabout actions
+        exitPosition = re.search(r'\d+', command).group()
+
+        exitPosition = int(exitPosition)
+        print(exitPosition)
+        roundabout(exitPosition)
+        print("Roundabout action")
+        print("roundabout exit number: ", command)
     else:
         print("straight")
     
 
 
 def print_route_data():
-    print(start_instruction)
+    print(html_instruction)
     print(start_point)
     print(end_point)
     print(maneuver)
@@ -47,20 +57,21 @@ distance = 0
 currentLat = 0
 currentLng = 0
 actionList = []
+html_instructionList = []
 run_nav_status = {"status": "Stop"}
 bearing_value = {"value": 0}
 compass_command_run = {"status": "Run"}
 compass_command_stop = {"status": "Stop"}
 
 # travel = False
-
 while run_program:
+    
     sense.clear()
     sleep(1)
     with open('/home/pi/Desktop/Capstone/backend/run_nav_command.json') as c:
         data = json.load(c)
         statusValue = data['status']
-        print("Run Navigation: ", statusValue)
+        print("Run Navigation status: ", statusValue)
         if statusValue == "Run":
             cal = True
 
@@ -72,22 +83,32 @@ while run_program:
 
         start_point = extract_element_from_json(distros_dict, ["routes", "legs","start_address"])
         end_point = extract_element_from_json(distros_dict, ["routes", "legs","end_address"])
-        start_instruction = extract_element_from_json(distros_dict, ["routes", "legs","steps","html_instructions"])
+        html_instruction = extract_element_from_json(distros_dict, ["routes", "legs","steps","html_instructions"])
         maneuver = extract_element_from_json(distros_dict, ["routes", "legs","steps","maneuver"])
         start_lat = extract_element_from_json(distros_dict, ["routes", "legs","steps","start_location","lat"])
         start_lng = extract_element_from_json(distros_dict, ["routes", "legs","steps","start_location","lng"])
         end_lat = extract_element_from_json(distros_dict, ["routes", "legs","steps","end_location","lat"])
         end_lng = extract_element_from_json(distros_dict, ["routes", "legs","steps","end_location","lng"])
-        start_instruction = BeautifulSoup(start_instruction[0], "lxml").text
+        
+        del html_instruction[0]
+        html_instructionList = []
+        # html_instruction = BeautifulSoup(html_instruction[0], "lxml").text
+        for i in html_instruction:
+            html_instructionList.append(BeautifulSoup(i, "lxml").text)
+           
+        
 
         #delete starting point maneuver(None)
         del maneuver[0]
+        actionList = []
         for item in maneuver: 
             # if item != None
             actionList.append(item)
 
         #put action into action list
         for item in actionList:
+            print(item)
+        for item in html_instructionList:
             print(item)
 
         print_route_data()
@@ -101,6 +122,7 @@ while run_program:
         print("Number of actions:", actionCount)
         action_index = 0
         target_coordinate_index = 0
+        html_instruction_index = 0
         
         ##first step here
         run_first_step = True
@@ -112,7 +134,7 @@ while run_program:
                     with open('/home/pi/Desktop/Capstone/backend/run_nav_command.json') as j:
                             data = json.load(j)
                             statusValue = data['status']
-                            print("Run Navigation: ", statusValue)
+                            print("Run Navigation status from first_step ", statusValue)
                             if statusValue == "Stop":
                                 with open('/home/pi/Desktop/Capstone/run_compass.json', 'w') as s:
                                     json.dump(compass_command_stop, s)
@@ -143,14 +165,15 @@ while run_program:
                     print("next turn coordinate: ", end_lat[target_coordinate_index],", ", end_lng[target_coordinate_index])
                     print("Distance to next turn: ", distance, " meter")
 
-                    if distance < 20:
+                    if distance < 25:
                         
                         print("Action Proceed")
                         with open('/home/pi/Desktop/Capstone/run_compass.json', 'w') as s:
                             json.dump(compass_command_stop, s)
-                        maneuverAction(actionList[action_index])
+                        maneuverAction(actionList[action_index], html_instructionList[html_instruction_index])
                         action_index += 1
                         target_coordinate_index += 1
+                        html_instruction_index += 1
                         proceed_first_step = False
                         run_first_step = False
 
@@ -174,7 +197,7 @@ while run_program:
                         with open('/home/pi/Desktop/Capstone/backend/run_nav_command.json') as c:
                             data = json.load(c)
                             statusValue = data['status']
-                            print("Run Navigation: ", statusValue)
+                            print("Run Navigation status from process: ", statusValue)
                             if statusValue == "Stop":     
                                 proceed = False
                                 travel = False
@@ -197,9 +220,10 @@ while run_program:
                         
                         if distance < 50:
                             print("Action Proceed")
-                            maneuverAction(actionList[action_index])
+                            maneuverAction(actionList[action_index], html_instructionList[html_instruction_index])
                             action_index += 1
                             target_coordinate_index += 1
+                            html_instruction_index += 1
                             travel = False
                             proceed = False
 

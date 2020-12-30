@@ -37,14 +37,14 @@ while standby:
     with open('/home/pi/Desktop/Capstone/backend/getGPScommand.json') as f:
         data = json.load(f)
         statusValue = data['status']
-        print(statusValue)
+        print("getGPS status value: ", statusValue)
 
 
     if statusValue == "Fetch":
         saveCoordinate()
         with open('/home/pi/Desktop/Capstone/backend/getGPScommand.json', 'w') as c:
             json.dump(status, c)
-        print("changed to stop")
+        print("getGPS status changed to stop")
         
 
     

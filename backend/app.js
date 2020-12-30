@@ -57,15 +57,21 @@ app.post('/saveData', function (req, res) {
 
 
 app.get('/getGPS', (req, res) => {
-    let rawdata = fs.readFileSync('/home/pi/Desktop/Capstone/originGPS.json');
-    let coordinate = JSON.parse(rawdata);
-    
+
     //change status
     let get_GPS_command = JSON.stringify(get_GPS_status);
     fs.writeFile('/home/pi/Desktop/Capstone/backend/getGPScommand.json', get_GPS_command, (err) => {
         if (err) throw err;
         console.log('Data written to get GPS command file:fetch');
     });
+    setTimeout(() => { 
+        console.log("5 sec!")
+        let rawdata = fs.readFileSync('/home/pi/Desktop/Capstone/originGPS.json');
+        let coordinate = JSON.parse(rawdata);
+        return res.send(coordinate); }, 3000);
+   
+    
+    
 
     let run_nav_command = JSON.stringify(run_nav_status);
     fs.writeFile('/home/pi/Desktop/Capstone/backend/run_nav_command.json', run_nav_command, (err) => {
@@ -73,10 +79,10 @@ app.get('/getGPS', (req, res) => {
         console.log('Data written to run nav command file:STOP');
     });
 
-    return res.send(coordinate);
+    
   });
 
-var server = app.listen(8080, function () {
+var server = app.listen(8081, function () {
     var host = server.address().address
     var port = server.address().port
     console.log("SafeCycle app listening at http://%s:%s", host, port)

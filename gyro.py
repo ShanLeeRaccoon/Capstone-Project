@@ -163,7 +163,7 @@ while True:
     with open('/home/pi/Desktop/Capstone/run_compass.json', 'r') as s:
         json_data = json.load(s)
     data = json_data['status']
-    print(data)
+    print("run compass status: ", data)
     if data == "Run":
         status = True
     try:    

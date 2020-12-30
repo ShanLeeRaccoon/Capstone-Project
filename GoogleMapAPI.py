@@ -51,13 +51,13 @@ while standby:
     with open('/home/pi/Desktop/Capstone/backend/cal_route_command.json') as f:
         data = json.load(f)
         statusValue = data['status']
-        print(statusValue)
+        print("get route status: ", statusValue)
     if statusValue == "Cal":
         cal_route()
         with open('/home/pi/Desktop/Capstone/backend/cal_route_command.json', 'w') as c:
             json.dump(cal_route_status, c)
-        print("cal route changed to stop")
+        print("cal route status changed to stop")
 
         with open('/home/pi/Desktop/Capstone/backend/run_nav_command.json', 'w') as d:
             json.dump(run_nav_status, d)
-        print("Run nav changed to run")
+        print("Run nav status changed to run")
