@@ -60,7 +60,7 @@ class App extends Component {
 					<Navbar.Brand href="#home">
 						<img
 							alt=""
-							src="https://seeklogo.net/wp-content/files/nAMr39DXwW/bmw-new-2020-SJklslL.svg"
+							src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.15752-9/132651091_730951107838549_2279771888978249723_n.png?_nc_cat=103&ccb=2&_nc_sid=ae9488&_nc_ohc=Ts01da4f-kQAX-Pdm1i&_nc_ht=scontent.fsgn2-2.fna&oh=8fde26a72ad332f5d33d4c9eee56b01e&oe=600FD48A"
 							width="30"
 							height="30"
 							className="d-inline-block align-top" />{' '}

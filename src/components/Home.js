@@ -13,6 +13,7 @@ class Home extends Component {
 			end: " ",
 			redirect: false,
 			lat:1,
+			errorMsg: " ",
 			lng:1,
 			isLoading: false
 		}
@@ -24,7 +25,8 @@ class Home extends Component {
 		// fetch('http://192.168.0.11:8080/getGPS')
 		// 	.then(response => response.json())
 		// 	.then(data => this.setState({ lat: data.currentLat, lng: data.currentLng }));
-		axios.get('http://192.168.0.11:8080/getGPS').then(resp => {
+		axios.get('http://192.168.102.137:8081/getGPS').then(resp => {
+		// axios.get('http://192.168.43.90:8081/getGPS').then(resp => {
 
 		this.setState({
 			lat: resp.data.currentLat,
@@ -49,16 +51,31 @@ class Home extends Component {
 		this.props.testDropping(this.state.testValue)
 	}
 
-	
+	setErrorMsg(){
+		this.setState({
+			errorMsg:"wrongboi"
+		})
+	}
 	//Button Click Function
 	opensweetalert() {
+		var validation = localStorage.getItem("endLocation")
+
+		if(validation == "Please Select a location. "){
+			Swal.fire({
+				type: 'error',
+				title: 'Oops...',
+				text: 'Please enter a valid location.'
+			  })
+		}
+		else{
 		let targetLocation = {
 			// address: localStorage.getItem("endLocation")
 			address: localStorage.getItem("targetLat") + ", " + localStorage.getItem("targetLng")
 		}
 		console.log("print", targetLocation)
 
-		axios.post('http://192.168.0.11:8080/saveData', targetLocation)
+		axios.post('http://192.168.102.137:8081/saveData', targetLocation)
+		// axios.post('http://192.168.43.90:8081/saveData', targetLocation)
 
 		.then((response) => {
 			console.log(response);
@@ -72,7 +89,7 @@ class Home extends Component {
 			type: 'success',
 		})
 		setTimeout(() => { window.location = "DisplayRoute"; }, 3000);
-		
+	}
 		
 	}
 	
@@ -113,8 +130,10 @@ class Home extends Component {
 
 						</tbody>
 					</Table>
-
-					<Button style={{ marginBottom: '10px' }} block onClick={this.opensweetalert} class="btn btn-primary">Confirm location</Button>
+					
+					<p style={{ color: 'red' }}>{this.state.errorMsg}</p>
+					<Button style={{ marginBottom: '10px' }} block onClick={() => this.opensweetalert()} class="btn btn-primary">Confirm location</Button>
+					
 					<h1></h1>
 					<p></p>
 				</div>
