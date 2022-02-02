@@ -42,8 +42,6 @@ arrow_right = [
    b, b, b, b, b, b, b, b
 ]
 
-<<<<<<< HEAD
-=======
 order1 = [
     b, w, b, b, b, b, b, b,
     w, w, b, b, b, b, b, b,
@@ -141,7 +139,27 @@ order9 = [
     b, b, b, b, y, b, b, b 
 ]
 
->>>>>>> Shan
+u_turn_right = [
+    b, b, b, b, b, b, b, b,
+    b, y, y, y, y, y, y, b,
+    b, y, y, y, y, y, y, b,
+    b, y, y, b, b, y, y, b,
+    b, y, y, b, b, y, y, b,
+    b, y, y, b, b, y, y, b,
+    b, b, b, b, y, y, y, y,
+    b, b, b, b, b, y, y, b
+    ]
+
+U_turn_left = [ 
+    b, b, b, b, b, b, b, b,
+    b, y, y, y, y, y, y, b,
+    b, y, y, y, y, y, y, b,
+    b, y, y, b, b, y, y, b,
+    b, y, y, b, b, y, y, b,
+    b, y, y, b, b, y, y, b,
+    y, y, y, y, b, b, b, b,
+    b, y, y, b, b, b, b, b
+]
 trig = OutputDevice(4)
 trig2 = OutputDevice(17)
 
@@ -150,8 +168,6 @@ trig2 = OutputDevice(17)
 #     trig.on()
 #     trig2.on()
     
-<<<<<<< HEAD
-=======
 
 def roundabout(exitNum):
     if exitNum == 1:
@@ -174,10 +190,16 @@ def roundabout(exitNum):
         sense.set_pixels(order9)
     else:
         print("out of range!!")
-    sleep(15)
+
+    trig2.on()
+    trig.on()
+    sleep(3)
+    trig2.off()
+    trig.off()
+
+    sleep(10)
     sense.clear()
 
->>>>>>> Shan
 def straight():
     sense.set_pixels(arrow_up)
     
@@ -192,9 +214,7 @@ def left():
         trig.on()
         sleep(0.3)
         
-        
-    # trig.on()
-    # trig.off()
+   
     
     sense.clear()
     trig.off()
@@ -208,44 +228,62 @@ def right():
         sense.set_pixels(arrow_right)
         sleep(0.3)
         
-    # trig2.on()
-    # trig2.off()
     
     sense.clear()
     trig2.off()
 
-<<<<<<< HEAD
-run = True
-
-while run:
-    straight()
-    
-    i = input("Please input a turning prompt, press L to turn left, R to turn right and E to exit")
-    if i == "l":
-        left()
-    elif i == "r":
-        right()
-    elif i == "e":
+def uturnL():
+    for i in range(10):
         sense.clear()
-        run = False
+        trig.off()
+        sleep(0.3)
+        sense.set_pixels(U_turn_left)
+        trig.on()
+        sleep(0.3)
         
+   
     
+    sense.clear()
+    trig.off()
+
+def uturnR():
+    for i in range(10):
+        sense.clear()
+        trig2.off()
+        sleep(0.3)
+        sense.set_pixels(u_turn_right)
+        trig2.on()
+        sleep(0.3)
+        
+   
     
-=======
-
-# run = True
-
-# while run:
-#     straight()
+    sense.clear()
+    trig2.off()
     
-#     i = input("Please input a turning prompt, press L to turn left, R to turn right and E to exit")
-#     if i == "l":
-#         left()
-#     elif i == "r":
-#         right()
-#     elif i == "e":
-#         sense.clear()
-#         run = False
 
-# roundabout(7)
->>>>>>> Shan
+while True:
+    straight()
+    sleep(5)
+    left()
+    straight()
+    sleep(5)
+    uturnL()
+    straight()
+    sleep(5)
+    roundabout(4)
+    straight()
+    sleep(5)
+    right()
+    straight()
+    sleep(5)
+    left()
+    straight()
+    sleep(5)
+    uturnR()
+    straight()
+    sleep(5)
+    roundabout(2)
+    straight()
+    sleep(5)
+    right()
+    

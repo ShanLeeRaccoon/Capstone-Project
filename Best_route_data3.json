@@ -1,0 +1,138 @@
+{
+    "geocoded_waypoints": [
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJu4AA0DMvdTERFjgtbpPbgAI",
+            "types": [
+                "establishment",
+                "point_of_interest"
+            ]
+        },
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJ8YsqxpIvdTERMM9hQZT9ZCs",
+            "types": [
+                "street_address"
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "bounds": {
+                "northeast": {
+                    "lat": 10.7264535,
+                    "lng": 106.7100389
+                },
+                "southwest": {
+                    "lat": 10.723557,
+                    "lng": 106.7085003
+                }
+            },
+            "copyrights": "Map data \u00a92020",
+            "legs": [
+                {
+                    "distance": {
+                        "text": "0.5 km",
+                        "value": 459
+                    },
+                    "duration": {
+                        "text": "2 mins",
+                        "value": 117
+                    },
+                    "end_address": "32 Khu Ph\u1ed1 Nam Quang 1, T\u00e2n Phong, Qu\u1eadn 7, Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh, Vietnam",
+                    "end_location": {
+                        "lat": 10.7235841,
+                        "lng": 106.7100389
+                    },
+                    "start_address": "62 Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh, T\u00e2n Phong, Qu\u1eadn 7, Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh, Vietnam",
+                    "start_location": {
+                        "lat": 10.7264526,
+                        "lng": 106.7085003
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "18 m",
+                                "value": 18
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 6
+                            },
+                            "end_location": {
+                                "lat": 10.7264535,
+                                "lng": 106.7086657
+                            },
+                            "html_instructions": "Head <b>east</b> on <b>H\u00e0 Huy T\u1eadp</b> toward <b>Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh</b>",
+                            "polyline": {
+                                "points": "i_n`AcohjS?a@"
+                            },
+                            "start_location": {
+                                "lat": 10.7264526,
+                                "lng": 106.7085003
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.3 km",
+                                "value": 332
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 65
+                            },
+                            "end_location": {
+                                "lat": 10.723557,
+                                "lng": 106.7090434
+                            },
+                            "html_instructions": "Turn <b>right</b> after Popeyes (on the left)",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "i_n`AephjSR?zDCvDGZ?R?J?JAJAb@KHCJCPKXY"
+                            },
+                            "start_location": {
+                                "lat": 10.7264535,
+                                "lng": 106.7086657
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 109
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 46
+                            },
+                            "end_location": {
+                                "lat": 10.7235841,
+                                "lng": 106.7100389
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>L\u00fd Long T\u01b0\u1eddng</b><div style=\"font-size:0.9em\">Destination will be on the left</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "gmm`AorhjSAYA[?qC"
+                            },
+                            "start_location": {
+                                "lat": 10.723557,
+                                "lng": 106.7090434
+                            },
+                            "travel_mode": "DRIVING"
+                        }
+                    ],
+                    "traffic_speed_entry": [],
+                    "via_waypoint": []
+                }
+            ],
+            "overview_polyline": {
+                "points": "i_n`AcohjS?a@R?rJKfAAx@Q\\OXYAYAmD"
+            },
+            "summary": "Nguy\u1ec5n \u0110\u1ee9c C\u1ea3nh",
+            "warnings": [],
+            "waypoint_order": []
+        }
+    ],
+    "status": "OK"
+}
